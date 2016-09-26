@@ -1,0 +1,233 @@
+/* 对css编写的要求只有一个：心中有数*/
+  /* 让自己明确控制每一个元素的内外边距*/
+
+
+
+/* 地基
+---------------------------------------------------------------------------------------------------------------------------------------------*/
+body {
+	background-color:#d1d1d1;/*疑问：当body外边距不为0时为啥也是铺满整个浏览器窗口？*/
+	font-family:"\5FAE\8F6F\96C5\9ED1";
+	margin:0px;
+	padding:0px;
+}
+
+
+/* 各个模块形状和位置
+----------------------------------------------------------------------------------------------------------------------------------------------*/
+#mainheader {
+	margin:0px;
+	padding:0px;
+}
+
+section {
+	margin:20px;
+	padding:20px;
+}
+
+aside {
+	margin:20px;
+	padding:0px;
+}
+
+footer {
+	margin:0px;
+	padding:0px;
+}
+
+/* 各个模块表现
+----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* header页眉在缩放时不用随之改变比较好
+-----------------------------------------------------------------------*/
+#mainheader {
+	height:100px;/*我们在页面是直接设置内容区的高度来得到，在页脚是利用设置内边距来实现的，因为背景颜色可以充满并透过内边距*/
+	background-color:#404040;
+}
+
+nav ul  li {
+	margin:10px;
+	padding:1px;
+	width:auto;/* 设为一个自动值会方便，不论输入的字多与少会自动调整其内容宽度，当然之前把内边距和外边距手动改为需要的值是最好的，以便做到心中有数*/
+	float:left;/*书上用display，我却一直无法实现，要研究一下*/
+}
+
+nav ul {
+	margin:0px;
+	padding:0px;
+	position:relative;/* 其实对一个页面来说，当页面发生缩放时，要保证重点内容（正文等等）与浏览器共同缩放就行，其余保持不会被打乱就行，一般其余部分就采用相对定位，以免影响阅读，如果在这里页眉采用绝对定位时，在页面缩放时会将页面排版打乱*/
+	width:auto;/* 对li设了一个auto值，那么这里也应该输一个auto*/
+	bottom:40px;/*一个向上的偏移值，相对于之前位置的偏移，怎么理解？记住假如你想向上偏移，就指定bottom：偏移量*/
+	left:1000px;
+}
+
+nav ul li a:link {/* 未被点击之前的样式状态，如果是测试，记得清空浏览器历史记录，不然会发现除了第一次出现该有的状态，以后再也不会出现了，除非你换了一个浏览器，哈哈*/
+	color:#ffffff;
+	text-decoration:none;/*在书上看到在用border-bottom，不知有啥区别，以后要弄清楚border-bottom，border，text-decoration的区别，而且这里使用一次就行，不会被覆盖*/
+}
+
+nav ul  li a:visited {/* 点击之后的样式，他们一般出现的顺序为link visited hover active */
+	color:#737373;
+}
+
+nav ul li a:hover {/*鼠标悬浮在上的样式*/
+	color:#ffd700;
+}
+
+nav ul li a:active {/*按下鼠标键不放，你就会看到这个样式了*/
+	color:#aaaaaa;
+}
+
+nav ul #dangqian {
+	background-color: #f88396;/*当处于当前页面时总要有点区别吧*/
+}
+
+
+#mainheader img {
+	margin:0px;/*我们手动指定内外边距，以做到心中有数，尽管很有可能默认就没有内外边距*/
+	padding:0px;
+	position:relative;/*logo属于页面的一部分，如果在这里采用绝对定位时，在页面缩放时会将页面排版打乱*/
+	top:5px;
+	left:40px;
+}
+
+
+/* section
+-----------------------------------------------------------------------*/
+section {
+	background:#ffffff;/*background其实包含了background-color，还包含了其他，但是从性能上说明确指定会更加好一点*/
+}
+
+article .zuozhe {
+	color:#878787;
+	font-size:0.9em;/*改变字体大小的三种方式*/
+}
+
+#section1 article p span {
+	font-weight:bold;
+}
+
+#section2 article figure .biankuang {
+	border-style:groove;
+	padding:10px;
+	margin:0px 0px 15px 0px;
+	width:300px;/* .biankuang是一个块属性，如果用auto，会采用块属性的默认值，占据一整行*/
+}
+
+#section2 article figure .xuanshou {/*我对居中问题依然没有什么办法，要尽快解决啊,其实利用内外边距来间接实现某些垂直居中问题就比较好*/
+	text-align:center;/*text相对于包含它的块元素的左右边框居中*/
+	padding :0px;
+	margin:0px 0px 10px 0px;/*垂直居中依然有问题啊*/
+}
+
+article table {/*table有margin padding border-spacing；td，th有padding*/
+	margin:0px;
+	padding:0px;
+	border-collapse:collapse;/*会折叠td th表格间的边框间的空间和整个表格的边框与表格边框间的空间，不是想border-spacing=0px那样重叠，而是直接将两条线变为一条线*/
+	width:100%;/* 本来table是一个块级元素，但是这里在某种机制下宽度根据实际确定，导致不是占据一行，利用100%恢复，注意内外边距，width是内容宽度*/
+}
+
+article table td,#section2 article table th {
+	border:1px solid #cfcfcf;
+	padding:5px;
+	text-align:left;
+	
+}
+
+article table th {
+	background-color:#404040;
+	color:#ffffff;
+}
+
+article table #biaoge {
+	font-weight:bold;
+}
+
+article table tr:nth-child(even) {/*计算单双性不要忘了th和td都包含在tr中 odd为奇数 even为偶数,意思是第几个tr*/
+	background-color:#ababab;
+}
+
+
+/* aside
+-----------------------------------------------------------------------*/
+aside {
+	background-color:#ffffff;
+	padding:20px;
+}
+
+form .tables {
+	display:table;
+	margin:0px;
+	padding:0px 0px 0px 230px;
+	border-spacing:8px;/*border-spacing是属于表格整个的属性，不能单独用于单元格*/
+	font-size:0.8em;
+}
+
+form .tables .tablerow {
+	display:table-row;
+}
+
+form .tables .tablerow > label,.tablerow > p,.tablerow > input ,.tablerow > textarea  ,.tablerow > select {/*选择儿元素*/
+	display:table-cell;
+	vertical-align:top;
+}
+
+form .tables .tablerow >label:nth-child(1) {/*每行的第一个label*/
+	text-align:right;
+	width:90px;
+	padding-right:10px;
+}
+
+form .tables .tablerow p #biandan {
+	font-weight:10x;
+	color:#c9c9c9;
+}
+
+.tables fieldset {
+	margin:0px;
+	padding:0px;
+	border:0;
+}
+
+form .tables .tablerow textarea {
+	font-size:1.3em;
+}
+
+form #submit {
+	border-radius:15px;
+	margin:0px;
+	padding:10px 580px;
+	background-color:blue;
+	font-size:1.3em;
+}
+
+#jvzhong {
+	text-align:center;
+}
+
+
+/*footer
+-----------------------------------------------------------------------*/
+footer {
+	background-color:#404040;
+	padding:20px 0px;/*我们在页面是直接设置内容区的高度来得到，在页脚是利用设置内边距来实现的，因为背景颜色可以充满并透过内边距*/
+}
+
+footer p {
+	text-align:center;/*如果用span的话，在css必须套一个div才能利用text-agin居中，因为text-agin对象为块元素,不如直接用p*/
+	font-size:0.8em;
+}
+
+/* 各个模块共用的规则
+-----------------------------------------------------------------------*/
+section article h4 {
+	color:#303030;
+	font-weight:1px;
+}
+
+
+
+
+
+
+
